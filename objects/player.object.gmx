@@ -31,15 +31,23 @@ event_inherited();
 hp = 1;
 energy = 1;
 
+xspd = 0;
+yspd = 0;
 xspdmax = 5;
 
 state = player_move_state;
+sprite_state = IDLE;
 
 sprite[IDLE] = gun_sp;
 sprite[MOVE] = gun_walk_sp;
 sprite[RUN] = gun_run_sp;
 sprite[CROUCH] = gun_crouch_sp;
 sprite[DASH] = gun_dash_sp;
+sprite[JUMP] = gun_jump_sp;
+sprite[LIGHT] = gun_light_sp;
+sprite[HEAVY] = gun_heavy_sp;
+sprite[RANGE] = gun_range_sp;
+sprite[SPECIAL] = gun_special_sp;
 </string>
           </argument>
         </arguments>

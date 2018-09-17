@@ -678,15 +678,18 @@
     <option_xbone_title_id>1234ABCD</option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="8">
+    <constants number="11">
       <constant name="IDLE">0</constant>
       <constant name="MOVE">1</constant>
       <constant name="RUN">2</constant>
       <constant name="CROUCH">3</constant>
       <constant name="DASH">4</constant>
-      <constant name="LIGHT">5</constant>
-      <constant name="HEAVY">6</constant>
-      <constant name="RANGE">7</constant>
+      <constant name="JUMP">5</constant>
+      <constant name="LIGHT">6</constant>
+      <constant name="HEAVY">7</constant>
+      <constant name="RANGE">8</constant>
+      <constant name="SPECIAL">9</constant>
+      <constant name="INTERACT">10</constant>
     </constants>
   </ConfigConstants>
 </Config>
