@@ -23,6 +23,11 @@
         <sprite>sprites\gun_rest_sp</sprite>
         <sprite>sprites\gun_draw_sp</sprite>
         <sprite>sprites\gun_dash_old_sp</sprite>
+        <sprite>sprites\gun_jump_sp</sprite>
+        <sprite>sprites\gun_light_sp</sprite>
+        <sprite>sprites\gun_heavy_sp</sprite>
+        <sprite>sprites\gun_range_sp</sprite>
+        <sprite>sprites\gun_special_sp</sprite>
       </sprites>
       <sprites name="Sword">
         <sprite>sprites\sword_face_proto_sp</sprite>
@@ -52,10 +57,28 @@
     <sprite>sprites\guy_target_sp</sprite>
     <sprite>sprites\laptop_sp</sprite>
     <sprite>sprites\window_sp</sprite>
+    <sprite>sprites\startup_sp</sprite>
+    <sprite>sprites\startup_2_sp</sprite>
+    <sprite>sprites\startup_true_sp</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
+    <scripts name="Universal Scripts">
+      <script>scripts\animation_end.gml</script>
+      <script>scripts\animation_hit_frame.gml</script>
+      <script>scripts\approach.gml</script>
+      <script>scripts\check_physics.gml</script>
+      <script>scripts\convert_fps.gml</script>
+      <script>scripts\convert_image_spd.gml</script>
+      <script>scripts\initialize_array.gml</script>
+      <script>scripts\modulo.gml</script>
+      <script>scripts\seconds_to_steps.gml</script>
+      <script>scripts\set_size.gml</script>
+      <script>scripts\view_approach.gml</script>
+      <script>scripts\view_follow_p_state.gml</script>
+      <script>scripts\view_screenshake.gml</script>
+    </scripts>
     <scripts name="Control Scripts">
       <script>scripts\take_input.gml</script>
     </scripts>
@@ -63,26 +86,15 @@
       <scripts name="Player State Scripts">
         <script>scripts\player_move_state.gml</script>
       </scripts>
+      <script>scripts\change_sprite.gml</script>
     </scripts>
-    <script>scripts\animation_end.gml</script>
-    <script>scripts\animation_hit_frame.gml</script>
-    <script>scripts\approach.gml</script>
-    <script>scripts\check_physics.gml</script>
-    <script>scripts\convert_fps.gml</script>
-    <script>scripts\convert_image_spd.gml</script>
-    <script>scripts\initialize_array.gml</script>
-    <script>scripts\modulo.gml</script>
-    <script>scripts\seconds_to_steps.gml</script>
-    <script>scripts\set_size.gml</script>
-    <script>scripts\view_approach.gml</script>
-    <script>scripts\view_follow_p_state.gml</script>
-    <script>scripts\view_screenshake.gml</script>
   </scripts>
   <objects name="objects">
     <objects name="Control">
       <object>objects\control</object>
       <object>objects\input</object>
       <object>objects\player_stats</object>
+      <object>objects\logo_skippable</object>
     </objects>
     <objects name="Characters">
       <object>objects\character_parent</object>
@@ -91,6 +103,7 @@
     </objects>
   </objects>
   <rooms name="rooms">
+    <room>rooms\init_room</room>
     <room>rooms\test_room</room>
   </rooms>
   <help>

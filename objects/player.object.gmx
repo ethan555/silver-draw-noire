@@ -34,12 +34,19 @@ energy = 1;
 xspd = 0;
 yspd = 0;
 xspdmax = 5;
+yspdmax = YSPDMAX;
+jspd = 12;
 
 state = player_move_state;
-sprite_state = IDLE;
+
+image_xscale = 4;
+image_yscale = 4;
+
+facing = 1;
+mask_index = gun_sp;
 
 sprite[IDLE] = gun_sp;
-sprite[MOVE] = gun_walk_sp;
+sprite[WALK] = gun_walk_sp;
 sprite[RUN] = gun_run_sp;
 sprite[CROUCH] = gun_crouch_sp;
 sprite[DASH] = gun_dash_sp;
@@ -72,6 +79,31 @@ sprite[SPECIAL] = gun_special_sp;
             <kind>1</kind>
             <string>///Execute state
 script_execute(state);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Draw sprite state
+image_xscale = facing*abs(image_xscale);
+draw_self();
 </string>
           </argument>
         </arguments>

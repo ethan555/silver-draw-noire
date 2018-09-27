@@ -20,7 +20,7 @@ var special = input.special;
 var interact = input.interact;
 //Lateral facing direction and movement
 var hdir = (right - left);
-var hspd = xmaxspd * hdir;
+var hspd = xspdmax * hdir;
 
 /* Order of Actions:
  * hspd - Direction of dodge, attacks, etc.
@@ -33,7 +33,10 @@ var hspd = xmaxspd * hdir;
 if (hdir != 0) {
     facing = hdir;
     xspd = hspd;
+    //sprite_state = WALK;
+    change_sprite(WALK,-1,.25);
 } else {
+    change_sprite(IDLE,0,1);
     xspd -= sign(xspd);
 }
 //State Changes
@@ -44,34 +47,45 @@ if (shift) {
 }
 if (space) {
     state = player_dodge_state;
-    sprite_state = DASH;
+    change_sprite(DASH,0,1);
+    //sprite_state = DASH;
     return 0;
 }
-if (crouch) {
-    state = player_crouch_state;
-    sprite_state = CROUCH;
-    return 0;
+if (down) {
+    yspd = jspd;
+    //state = player_crouch_state;
+    //sprite_state = CROUCH;
+    change_sprite(CROUCH,0,.25);
+    //return 0;
 }
-if (up) {
-    state = player_jump_state;
-    sprite_state = JUMP;
-    return 0;
+if (up || (place_free(x,y+1))) {
+    if (up) {
+        yspd = -jspd;
+    }
+    if (yspd < YSPDMAX) yspd ++;
+    //state = player_jump_state;
+    //sprite_state = JUMP;
+    change_sprite(JUMP,0,1);
+    //return 0;
 }
 if (light) {
     state = player_light_state;
-    sprite_state = LIGHT;
+    //sprite_state = LIGHT;
+    change_sprite(LIGHT,0,1);
     xspd = 0;
     return 0;
 }
 if (heavy) {
     state = player_heavy_state;
-    sprite_state = HEAVY;
+    //sprite_state = HEAVY;
+    change_sprite(HEAVY,0,1);
     xspd = 0;
     return 0;
 }
 if (range) {
     state = player_range_state;
-    sprite_state = RANGE;
+    //sprite_state = RANGE;
+    change_sprite(RANGE,0,1);
     xspd = 0;
     return 0;
 }
@@ -79,6 +93,7 @@ if (interact) {
     //Interact with nearby interactables
     return 0;
 }
-//
 
+//If made it through, then we are just moving
+check_physics();
 
