@@ -48,6 +48,11 @@
       <sprite>sprites\nineslice_sp</sprite>
       <sprite>sprites\draw_sp</sprite>
       <sprite>sprites\sheath_sp</sprite>
+      <sprite>sprites\ammo_basic_sp</sprite>
+      <sprite>sprites\ammo_pierce_sp</sprite>
+      <sprite>sprites\ammo_shotgun_sp</sprite>
+      <sprite>sprites\ammo_bounce_sp</sprite>
+      <sprite>sprites\ammo_grenade_sp</sprite>
     </sprites>
     <sprite>sprites\guy_detailed</sprite>
     <sprite>sprites\guy_draw_sp</sprite>
