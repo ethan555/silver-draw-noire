@@ -46,15 +46,22 @@ state = player_move_state;
 image_xscale = 4;
 image_yscale = 4;
 
-cloth_length = 16;
+cloth_length = 20;//48;//16;
+cloth_width = 8;
+cloth_dist = 2;
+cloth_xadj = 4;
+cloth_yadj = 16;
+wind = true;
+windspd = 0;
+windspdmax = 10;
 var i;
 for (i = 0; i &lt; cloth_length; i ++) {
-    clothx1[i] = x+8;
-    clothy1[i] = y+i*4+1;
+    clothx1[i] = x+cloth_xadj;
+    clothy1[i] = y+i*cloth_dist+cloth_yadj;
 }
 for (i = 0; i &lt; cloth_length; i ++) {
-    clothx2[i] = x-8;
-    clothy2[i] = y+i*4+1;
+    clothx2[i] = x-cloth_xadj;
+    clothy2[i] = y+i*cloth_dist+cloth_yadj;
 }
 
 mask_index = gun_sp;
@@ -118,40 +125,99 @@ event_inherited();
             <string>///Draw self and then draw cape?
 event_inherited();
 
-var i, xold, yold, xnew, ynew;
-clothx1[0] = x+8;
-clothy1[0] = y;
-clothx2[0] = x-8;
-clothy2[0] = y;
+var i, xold, yold, xnew, ynew, ip;
+var px, py, nx, ny, vx, vy, d;
+
+clothx1[0] = x+cloth_xadj;
+clothy1[0] = y+cloth_yadj;
+clothx2[0] = x-cloth_xadj;
+clothy2[0] = y+cloth_yadj;
+if (wind) {
+    windspd = clamp(windspd+max(-.5, random(100)-95)*random(1.5), 0, windspdmax);
+}
+//First Cloth
+draw_set_colour(c_white);//image_blend);
+draw_primitive_begin(pr_trianglestrip);
 for (i = 1; i &lt; cloth_length; i ++) {
+    clothx1[i] += windspd;
     clothy1[i] += i/4;
-    clothy2[i] += i/4;
+    ip = (cloth_length-i)/cloth_length;
     //First part
-    if (point_distance(clothx1[i-1],clothy1[i-1],clothx1[i],clothy1[i]) &gt; 4) {
-        xnew = clothx1[i-1] + lengthdir_x(4,
-            point_direction(clothx1[i-1], clothy1[i-1], clothx1[i], clothy1[i]));
-        ynew = clothy1[i-1] + lengthdir_y(4,
-            point_direction(clothx1[i-1], clothy1[i-1], clothx1[i], clothy1[i]));
+    if (point_distance(clothx1[i-1],clothy1[i-1],clothx1[i],clothy1[i]) &gt; cloth_dist) {
+        xnew = clothx1[i-1] + lengthdir_x(cloth_dist,
+            lerp(
+                point_direction(clothx1[i-1], clothy1[i-1], clothx1[i], clothy1[i]),
+                270,
+                max(4*ip - 2.5,0)
+            )
+        );
+        ynew = clothy1[i-1] + lengthdir_y(cloth_dist,
+            lerp(
+                point_direction(clothx1[i-1], clothy1[i-1], clothx1[i], clothy1[i]),
+                270,
+                max(4*ip - 2.5,0)
+            )
+        );
         
         clothx1[i] = xnew;
         clothy1[i] = ynew;
     }
+    
+    //Draw the cloth with its width
+    px = clothx1[i-1];
+    py = clothy1[i-1];
+    nx = clothx1[i];
+    ny = clothy1[i];
+    d = point_direction(px,py,nx,ny) - 90;
+    vx = lengthdir_x(cloth_width, d);
+    vy = lengthdir_y(cloth_width, d);
+    draw_vertex(px+vx, py+vy);
+    draw_vertex(px-vx, py-vy);
+    draw_vertex(nx+vx, ny+vy);
+    draw_vertex(nx-vx, ny-vy);
+}
+draw_primitive_end();
+
+//Second Cloth
+draw_primitive_begin(pr_trianglestrip);
+for (i = 1; i &lt; cloth_length; i ++) {
+    clothy2[i] += i/4;
+    ip = (cloth_length-i)/cloth_length;
     //Second part
-    if (point_distance(clothx2[i-1],clothy2[i-1],clothx2[i],clothy2[i]) &gt; 4) {
-        xnew = clothx2[i-1] + lengthdir_x(4,
-            point_direction(clothx2[i-1], clothy2[i-1], clothx2[i], clothy2[i]));
-        ynew = clothy2[i-1] + lengthdir_y(4,
-            point_direction(clothx2[i-1], clothy2[i-1], clothx2[i], clothy2[i]));
+    if (point_distance(clothx2[i-1],clothy2[i-1],clothx2[i],clothy2[i]) &gt; cloth_dist) {
+        xnew = clothx2[i-1] + lengthdir_x(cloth_dist,
+            lerp(
+                point_direction(clothx1[i-1], clothy1[i-1], clothx1[i], clothy1[i]),
+                270,
+                max(6*ip - 5,0)
+            )
+        );
+        ynew = clothy2[i-1] + lengthdir_y(cloth_dist,
+            lerp(
+                point_direction(clothx1[i-1], clothy1[i-1], clothx1[i], clothy1[i]),
+                270,
+                max(6*ip - 5,0)
+            )
+        );
         
         clothx2[i] = xnew;
         clothy2[i] = ynew;
     }
     
-    draw_set_colour(c_black);
-    draw_line(clothx1[i-1],clothy1[i-1],clothx1[i],clothy1[i]);
-    draw_line(clothx2[i-1],clothy2[i-1],clothx2[i],clothy2[i]);
-    //draw_line(clothx1[i],clothy1[i],clothx2[i],clothy2[i]);
+    //Draw the cloth with its width
+    px = clothx2[i-1];
+    py = clothy2[i-1];
+    nx = clothx2[i];
+    ny = clothy2[i];
+    d = point_direction(px,py,nx,ny) - 90;
+    vx = lengthdir_x(cloth_width, d);
+    vy = lengthdir_y(cloth_width, d);
+    draw_vertex(px+vx, py+vy);
+    draw_vertex(px-vx, py-vy);
+    draw_vertex(nx+vx, ny+vy);
+    draw_vertex(nx-vx, ny-vy);
 }
+draw_primitive_end();
 </string>
           </argument>
         </arguments>

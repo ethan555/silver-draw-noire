@@ -60,6 +60,7 @@
     <sprite>sprites\startup_sp</sprite>
     <sprite>sprites\startup_2_sp</sprite>
     <sprite>sprites\startup_true_sp</sprite>
+    <sprite>sprites\wall_sp</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -94,6 +95,7 @@
       <object>objects\control</object>
       <object>objects\input</object>
       <object>objects\player_stats</object>
+      <object>objects\view_obj</object>
       <object>objects\logo_skippable</object>
     </objects>
     <objects name="Characters">
@@ -101,6 +103,7 @@
       <object>objects\player</object>
       <object>objects\player_gun</object>
     </objects>
+    <object>objects\wall</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\init_room</room>
