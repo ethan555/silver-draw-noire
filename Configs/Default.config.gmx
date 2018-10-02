@@ -678,7 +678,7 @@
     <option_xbone_title_id></option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="12">
+    <constants number="13">
       <constant name="YSPDMAX">32</constant>
       <constant name="IDLE">0</constant>
       <constant name="WALK">1</constant>
@@ -691,6 +691,7 @@
       <constant name="RANGE">8</constant>
       <constant name="SPECIAL">9</constant>
       <constant name="INTERACT">10</constant>
+      <constant name="RAIN_DEPTH">1000</constant>
     </constants>
   </ConfigConstants>
 </Config>

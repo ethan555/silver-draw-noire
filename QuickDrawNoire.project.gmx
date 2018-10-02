@@ -66,8 +66,11 @@
     <sprite>sprites\startup_2_sp</sprite>
     <sprite>sprites\startup_true_sp</sprite>
     <sprite>sprites\wall_sp</sprite>
+    <sprite>sprites\rain_sp</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\seamless_fog</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <scripts name="Universal Scripts">
@@ -102,6 +105,7 @@
       <object>objects\player_stats</object>
       <object>objects\view_obj</object>
       <object>objects\logo_skippable</object>
+      <object>objects\weather</object>
     </objects>
     <objects name="Characters">
       <object>objects\character_parent</object>

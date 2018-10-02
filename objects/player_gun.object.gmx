@@ -51,9 +51,7 @@ cloth_width = 8;
 cloth_dist = 2;
 cloth_xadj = 4;
 cloth_yadj = 16;
-wind = true;
-windspd = 0;
-windspdmax = 10;
+
 var i;
 for (i = 0; i &lt; cloth_length; i ++) {
     clothx1[i] = x+cloth_xadj;
@@ -132,14 +130,13 @@ clothx1[0] = x+cloth_xadj;
 clothy1[0] = y+cloth_yadj;
 clothx2[0] = x-cloth_xadj;
 clothy2[0] = y+cloth_yadj;
-if (wind) {
-    windspd = clamp(windspd+max(-.5, random(100)-95)*random(1.5), 0, windspdmax);
-}
+
 //First Cloth
 draw_set_colour(c_white);//image_blend);
 draw_primitive_begin(pr_trianglestrip);
 for (i = 1; i &lt; cloth_length; i ++) {
-    clothx1[i] += windspd;
+    if (weather.wind)
+        clothx1[i] += weather.windspd;
     clothy1[i] += i/4;
     ip = (cloth_length-i)/cloth_length;
     //First part
@@ -148,14 +145,14 @@ for (i = 1; i &lt; cloth_length; i ++) {
             lerp(
                 point_direction(clothx1[i-1], clothy1[i-1], clothx1[i], clothy1[i]),
                 270,
-                max(4*ip - 2.5,0)
+                max(4*ip - 3,0)
             )
         );
         ynew = clothy1[i-1] + lengthdir_y(cloth_dist,
             lerp(
                 point_direction(clothx1[i-1], clothy1[i-1], clothx1[i], clothy1[i]),
                 270,
-                max(4*ip - 2.5,0)
+                max(4*ip - 3,0)
             )
         );
         
@@ -181,22 +178,24 @@ draw_primitive_end();
 //Second Cloth
 draw_primitive_begin(pr_trianglestrip);
 for (i = 1; i &lt; cloth_length; i ++) {
+    if (weather.wind)
+        clothx2[i] += weather.windspd;
     clothy2[i] += i/4;
     ip = (cloth_length-i)/cloth_length;
     //Second part
     if (point_distance(clothx2[i-1],clothy2[i-1],clothx2[i],clothy2[i]) &gt; cloth_dist) {
         xnew = clothx2[i-1] + lengthdir_x(cloth_dist,
             lerp(
-                point_direction(clothx1[i-1], clothy1[i-1], clothx1[i], clothy1[i]),
+                point_direction(clothx2[i-1], clothy2[i-1], clothx2[i], clothy2[i]),
                 270,
-                max(6*ip - 5,0)
+                max(4*ip - 3,0)
             )
         );
         ynew = clothy2[i-1] + lengthdir_y(cloth_dist,
             lerp(
-                point_direction(clothx1[i-1], clothy1[i-1], clothx1[i], clothy1[i]),
+                point_direction(clothx2[i-1], clothy2[i-1], clothx2[i], clothy2[i]),
                 270,
-                max(6*ip - 5,0)
+                max(4*ip - 3,0)
             )
         );
         
