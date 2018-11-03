@@ -55,6 +55,7 @@
     <instance objName="input" x="352" y="256" name="inst_5E5FCE56" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="player_stats" x="480" y="256" name="inst_499AECF4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="logo_skippable" x="352" y="320" name="inst_E6232F87" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="gui_handler" x="640" y="256" name="inst_B322A988" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

@@ -48,11 +48,14 @@
       <sprite>sprites\nineslice_sp</sprite>
       <sprite>sprites\draw_sp</sprite>
       <sprite>sprites\sheath_sp</sprite>
-      <sprite>sprites\ammo_basic_sp</sprite>
+      <sprite>sprites\ammo_blank_sp</sprite>
+      <sprite>sprites\ammo_standard_sp</sprite>
       <sprite>sprites\ammo_pierce_sp</sprite>
       <sprite>sprites\ammo_shotgun_sp</sprite>
       <sprite>sprites\ammo_bounce_sp</sprite>
       <sprite>sprites\ammo_grenade_sp</sprite>
+      <sprite>sprites\revolver_cylinder_sp</sprite>
+      <sprite>sprites\font_sp</sprite>
     </sprites>
     <sprite>sprites\guy_detailed</sprite>
     <sprite>sprites\guy_draw_sp</sprite>
@@ -67,6 +70,7 @@
     <sprite>sprites\startup_true_sp</sprite>
     <sprite>sprites\wall_sp</sprite>
     <sprite>sprites\rain_sp</sprite>
+    <sprite>sprites\bullet_sp</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\seamless_fog</background>
@@ -94,25 +98,50 @@
     <scripts name="Player Scripts">
       <scripts name="Player State Scripts">
         <script>scripts\player_move_state.gml</script>
+        <script>scripts\player_crouch_state.gml</script>
+        <script>scripts\player_range_state.gml</script>
+      </scripts>
+      <scripts name="Gun State Scripts">
+        <script>scripts\gun_walk_state.gml</script>
+        <script>scripts\gun_range_state.gml</script>
       </scripts>
       <script>scripts\change_sprite.gml</script>
     </scripts>
+    <scripts name="Graphical Scripts">
+      <script>scripts\draw_gui_player.gml</script>
+    </scripts>
+    <scripts name="Bullet Scripts">
+      <script>scripts\set_bullet_speed.gml</script>
+      <script>scripts\bullet_hit_solid.gml</script>
+      <script>scripts\bullet_hit_target.gml</script>
+    </scripts>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\font0</font>
+  </fonts>
   <objects name="objects">
     <objects name="Control">
       <object>objects\control</object>
       <object>objects\input</object>
       <object>objects\player_stats</object>
+      <object>objects\view_parent</object>
       <object>objects\view_obj</object>
       <object>objects\logo_skippable</object>
-      <object>objects\weather</object>
     </objects>
     <objects name="Characters">
       <object>objects\character_parent</object>
       <object>objects\player</object>
       <object>objects\player_gun</object>
+      <object>objects\player_sword</object>
     </objects>
     <object>objects\wall</object>
+    <objects name="VFX">
+      <object>objects\gui_handler</object>
+      <object>objects\weather</object>
+      <object>objects\vfx_particles</object>
+    </objects>
+    <object>objects\bullet_parent</object>
+    <object>objects\particles_sparks</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\init_room</room>

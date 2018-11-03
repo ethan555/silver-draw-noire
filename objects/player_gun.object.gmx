@@ -31,7 +31,7 @@ event_inherited();
 hp = player_stats.gun_health;
 energy = player_stats.gun_energy;
 
-ammo = player_stats.gun_ammo;
+ammo[player_stats.gun_ammo - 1] = 0;
 ammo_index = 0; //from 0 to ammo - 1
 
 xspd = 0;
@@ -41,7 +41,9 @@ yspdmax = YSPDMAX;
 jspd = 12;
 
 state = player_move_state;
-//sprite_state = IDLE;
+state_index = WALK;
+states[WALK] = gun_walk_state;
+states[RANGE] = gun_range_state;
 
 image_xscale = 4;
 image_yscale = 4;
@@ -74,30 +76,6 @@ sprite[LIGHT] = gun_light_sp;
 sprite[HEAVY] = gun_heavy_sp;
 sprite[RANGE] = gun_range_sp;
 sprite[SPECIAL] = gun_special_sp;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="64">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Draw gun UI
-event_inherited();
 </string>
           </argument>
         </arguments>

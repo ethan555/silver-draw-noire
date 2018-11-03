@@ -47,7 +47,7 @@ inside_rain_system = part_system_create();
 part_system_depth(inside_rain_system, -RAIN_DEPTH);
 raindrop = part_type_create();
 part_type_sprite(raindrop,rain_sp,false,false,false);
-part_type_alpha1(raindrop, .25);
+part_type_alpha1(raindrop, .1);
 part_type_scale(raindrop,2,2);
 raindir = point_direction(0,0,rainxspd,rainyspd);
 part_type_direction(raindrop,raindir,raindir,.01,0);
@@ -60,8 +60,8 @@ lightning = true;
 fog = true;
 fogx = 0;
 fogy = 0;
-fogxspd = -.5;
-fogyspd = -.25;
+fogxspd = -.25;
+fogyspd = -.05;
 
 </string>
           </argument>
@@ -129,13 +129,13 @@ if (rain) {
     part_type_direction(raindrop,raindir,raindir,.01,0);
     
     repeat(rain_density) {
-        part_particles_create(raindrop,random(view_wview[0]*1.5),-random(16),raindrop,1);
+        part_particles_create(raindrop,view_xview[0]+random(view_wview[0]*1.5),view_yview[0]-random(16),raindrop,1);
     }
     
     depth = -RAIN_DEPTH;
     
     repeat(rain_density) {
-        part_particles_create(raindrop,random(view_wview[0]*1.5),0,raindrop,1);
+        part_particles_create(raindrop,view_xview[0]+random(view_wview[0]*1.5),view_yview[0]-random(16),raindrop,1);
     }
 }
 if (lightning) {
@@ -143,8 +143,8 @@ if (lightning) {
 }
 if (fog) {
     fogx += fogxspd;
-    fogxspd = clamp(fogxspd + .1*sign(windspd-rainxspd),-.5,.5);
-    fogy += rainyspd;
+    //fogxspd = clamp(fogxspd + .1*sign(windspd-rainxspd),-.5,.5);
+    fogy += fogyspd;
 }
 </string>
           </argument>
@@ -170,17 +170,9 @@ if (fog) {
             <kind>1</kind>
             <string>///Draw weather over everything
 
-///Draw rain
-/*if (rain) {
-    depth = -RAIN_DEPTH;
-    
-    raindir = point_direction(0,0,rainxspd,rainyspd);
-    part_type_direction(raindrop,dir,dir,.01,0);
-    
-    repeat(10) {
-        part_particles_create(raindrop,random(view_hview[0]*1.5),0,raindrop,1);
-    }
-}*/
+// Draw Fog
+if (fog)
+    draw_background_tiled_ext(seamless_fog,fogx,fogy,1,1,image_blend,.25);
 </string>
           </argument>
         </arguments>

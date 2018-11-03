@@ -29,16 +29,9 @@ var hspd = xspdmax * hdir;
  * interact - interaction takes lowest priority
  */
 
-//Lateral Movement
-if (hdir != 0) {
-    facing = hdir;
-    xspd = hspd;
-    //sprite_state = WALK;
-    change_sprite(WALK,-1,.25);
-} else {
-    change_sprite(IDLE,0,1);
-    xspd -= sign(xspd);
-}
+//Execute walk state
+script_execute(states[WALK], left, right);
+
 //State Changes
 if (shift) {
     state = player_shift_state;
