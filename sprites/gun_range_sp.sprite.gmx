@@ -7,8 +7,8 @@
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
   <bboxmode>0</bboxmode>
-  <bbox_left>18</bbox_left>
-  <bbox_right>44</bbox_right>
+  <bbox_left>24</bbox_left>
+  <bbox_right>45</bbox_right>
   <bbox_top>3</bbox_top>
   <bbox_bottom>31</bbox_bottom>
   <HTile>0</HTile>
@@ -23,7 +23,5 @@
     <frame index="0">images\gun_range_sp_0.png</frame>
     <frame index="1">images\gun_range_sp_1.png</frame>
     <frame index="2">images\gun_range_sp_2.png</frame>
-    <frame index="3">images\gun_range_sp_3.png</frame>
-    <frame index="4">images\gun_range_sp_4.png</frame>
   </frames>
 </sprite>

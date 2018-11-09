@@ -3,7 +3,7 @@
 var i;
 // Check collisions, Move
 var step = 1;
-for (i = 0; i < maxspd; i ++) {
+for (i = 0; i < seg_num; i ++) {
     var len = i*step;
     var px = x + lengthdir_x(len, angle);
     var py = y + lengthdir_y(len, angle);

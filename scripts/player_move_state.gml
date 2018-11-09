@@ -29,8 +29,20 @@ var hspd = xspdmax * hdir;
  * interact - interaction takes lowest priority
  */
 
-//Execute walk state
-script_execute(states[WALK], left, right);
+//Lateral facing direction and movement
+var hdir = (right - left);
+var hspd = xspdmax * hdir;
+
+//Lateral Movement
+if (hdir != 0) {
+    facing = hdir;
+    xspd = hspd;
+    //sprite_state = WALK;
+    change_sprite(WALK,-1,.25);
+} else {
+    change_sprite(IDLE,0,1);
+    xspd -= sign(xspd);
+}
 
 //State Changes
 if (shift) {
@@ -78,7 +90,7 @@ if (heavy) {
 if (range) {
     state = player_range_state;
     //sprite_state = RANGE;
-    change_sprite(RANGE,0,1);
+    change_sprite(RANGE,0,.75);
     xspd = 0;
     return 0;
 }

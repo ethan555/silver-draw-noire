@@ -26,23 +26,22 @@
           <argument>
             <kind>1</kind>
             <string>///Init variables
-maxspd = 16;
 // Angle
 angle = 0;
 
-xspd = lengthdir_x(maxspd, angle);
-yspd = lengthdir_y(maxspd, angle);
+xspd = lengthdir_x(BULLET_SPEED, angle);
+yspd = lengthdir_y(BULLET_SPEED, angle);
 
 // Collision code
 solid_collision = bullet_hit_solid;
 target_collision = bullet_hit_target;
 
 // Bullet trail
-segment = 4;
-seg_num = 4;
+segment = 2;
+seg_num = 2;
 trailw = 1;
-trailx[segNum - 1] = x;
-traily[segNum - 1] = y;
+trailx = initialize_array(seg_num, x);
+traily = initialize_array(seg_num, y);
 
 image_blend = c_white;
 </string>
@@ -101,8 +100,8 @@ traily[i] = y;
             <string>/// Update Bullet
 var i;
 // Check collisions, Move
-var step = maxspd / 4;
-for (i = 0; i &lt; maxspd; i ++) {
+var step = BULLET_SPEED / 16;
+for (i = 0; i &lt; seg_num; i ++) {
     var len = i*step;
     if (!place_empty(x + lengthdir_x(len, angle), y + lengthdir_y(len, angle))) {
         // If we are colliding with a solid, wall, otherwise it's a target
@@ -111,13 +110,32 @@ for (i = 0; i &lt; maxspd; i ++) {
             script_execute(solid_collision);
         } else {
             // Target Collision code
-            script_execute(target_collision);
+            //script_execute(target_collision);
         }
     }
 }
+
+x += xspd;
+y += yspd;
 </string>
           </argument>
         </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>203</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_kill_object</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
       </action>
     </event>
     <event eventtype="8" enumb="0">

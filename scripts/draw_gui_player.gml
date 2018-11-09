@@ -24,7 +24,7 @@ var cy = view_hview[0] - 80;//view_yview[0] + view_hview[0] - 64;
 draw_sprite_ext(revolver_cylinder_sp, 0, cx, cy,
     1, 1, ammo_index*60, image_blend, image_alpha);
 
-var i, sprite = ammo_standard_sp, angle;
+var i, sprite = -1, angle;
 for (i = 0; i < 6; i ++) {
     switch(ammo[i]) {
         case STANDARD:
@@ -39,9 +39,11 @@ for (i = 0; i < 6; i ++) {
             sprite = ammo_grenade_sp; break;
         default:
     }
-    angle = 90 + i*60;
-    draw_sprite_ext(sprite, 0, cx + lengthdir_x(44, angle), cy + lengthdir_y(44, angle),
-        1, 1, angle - 90, image_blend, image_alpha);
+    angle = 90 + ammo_index*60 - i*60;
+    if (sprite != -1) {
+        draw_sprite_ext(sprite, 0, cx + lengthdir_x(44, angle), cy + lengthdir_y(44, angle),
+            1, 1, 0/*angle - 90*/, image_blend, image_alpha);
+    }
 }
 
 
