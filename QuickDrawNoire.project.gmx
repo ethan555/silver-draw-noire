@@ -49,6 +49,8 @@
       <sprite>sprites\draw_sp</sprite>
       <sprite>sprites\sheath_sp</sprite>
       <sprite>sprites\ammo_blank_sp</sprite>
+      <sprite>sprites\ammo_selected_sp</sprite>
+      <sprite>sprites\ammo_unselected_sp</sprite>
       <sprite>sprites\ammo_standard_sp</sprite>
       <sprite>sprites\ammo_pierce_sp</sprite>
       <sprite>sprites\ammo_shotgun_sp</sprite>

@@ -37,7 +37,8 @@ ammo_index = 0; //from 0 to ammo - 1
 
 xspd = 0;
 yspd = 0;
-xspdmax = 5;
+xspdmax = 2.5;
+xslowspd = .35;
 yspdmax = YSPDMAX;
 jspd = 12;
 
@@ -101,6 +102,7 @@ sprite[SPECIAL] = gun_special_sp;
             <kind>1</kind>
             <string>///Draw self and then draw cape?
 event_inherited();
+
 
 var i, xold, yold, xnew, ynew, ip;
 var px, py, nx, ny, vx, vy, d;

@@ -19,10 +19,10 @@ if (gui_type == GUN) {
 var ammo = player_gun.ammo;
 var ammo_index = player_gun.ammo_index;
 
-var cx = 80;//view_xview[0] + 64;
-var cy = view_hview[0] - 80;//view_yview[0] + view_hview[0] - 64;
+var cx = 80;
+var cy = view_hview[0] - 80;
 draw_sprite_ext(revolver_cylinder_sp, 0, cx, cy,
-    1, 1, ammo_index*60, image_blend, image_alpha);
+    1, 1, 0/*ammo_index*60*/, image_blend, image_alpha);
 
 var i, sprite = -1, angle;
 for (i = 0; i < 6; i ++) {
@@ -40,6 +40,13 @@ for (i = 0; i < 6; i ++) {
         default:
     }
     angle = 90 + ammo_index*60 - i*60;
+    if (i == ammo_index) {
+        draw_sprite_ext(ammo_selected_sp,0,cx + lengthdir_x(44, angle), cy + lengthdir_y(44, angle),
+            1, 1, 0/*angle - 90*/, image_blend, image_alpha);
+    } else {
+        draw_sprite_ext(ammo_unselected_sp,0,cx + lengthdir_x(44, angle), cy + lengthdir_y(44, angle),
+            1, 1, 0/*angle - 90*/, image_blend, image_alpha);
+    }
     if (sprite != -1) {
         draw_sprite_ext(sprite, 0, cx + lengthdir_x(44, angle), cy + lengthdir_y(44, angle),
             1, 1, 0/*angle - 90*/, image_blend, image_alpha);

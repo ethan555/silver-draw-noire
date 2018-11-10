@@ -4,4 +4,5 @@
     You must have a positive animation speed.
 */
 
-return animation_hit_frame(image_number - 1);
+var result = animation_hit_frame(image_number);//animation_hit_frame(image_number - 1);
+return result;

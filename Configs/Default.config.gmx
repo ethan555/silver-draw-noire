@@ -678,9 +678,10 @@
     <option_xbone_title_id></option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="23">
+    <constants number="24">
       <constant name="FONT_CHARS">"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.,!?'-+/:"</constant>
-      <constant name="YSPDMAX">32</constant>
+      <constant name="GRAVITY">.5</constant>
+      <constant name="YSPDMAX">16</constant>
       <constant name="IDLE">0</constant>
       <constant name="WALK">1</constant>
       <constant name="RUN">2</constant>
@@ -695,7 +696,7 @@
       <constant name="RAIN_DEPTH">1000</constant>
       <constant name="GUN">0</constant>
       <constant name="SWORD">1</constant>
-      <constant name="BULLET_SPEED">128</constant>
+      <constant name="BULLET_SPEED">64</constant>
       <constant name="EMPTY">-1</constant>
       <constant name="STANDARD">0</constant>
       <constant name="PIERCE">1</constant>

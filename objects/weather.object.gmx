@@ -28,18 +28,19 @@
             <string>///Initiate Weather
 
 wind = true;
-windspd = -2;
-windspdmin = -5;
+windspd = -1;
+windspdmin = -3;
 windspdmax = 0;
-windspddelta = .5;
+windspddelta = .25;
 
 rain = true;
 inside = false;
 rainx = 0;
 rainy = 0;
-rainxspd = -.25;
-rainyspd = 2;
-rain_density = 15;
+rainxdir = -.125;
+rainydir = 1;
+rainspd = 10;
+rain_density = 7;
 
 rain_system = part_system_create();
 part_system_depth(rain_system, RAIN_DEPTH);
@@ -49,10 +50,10 @@ raindrop = part_type_create();
 part_type_sprite(raindrop,rain_sp,false,false,false);
 part_type_alpha1(raindrop, .1);
 part_type_scale(raindrop,2,2);
-raindir = point_direction(0,0,rainxspd,rainyspd);
+raindir = point_direction(0,0,rainxdir,rainydir);
 part_type_direction(raindrop,raindir,raindir,.01,0);
 part_type_orientation(raindrop,raindir,raindir,.01,0,true);
-part_type_speed(raindrop,20,20,.01,0);
+part_type_speed(raindrop,rainspd,rainspd,.01,0);
 part_type_life(raindrop,room_speed*3,room_speed*3);
 
 lightning = true;

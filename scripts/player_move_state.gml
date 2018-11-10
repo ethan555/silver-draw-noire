@@ -29,19 +29,15 @@ var hspd = xspdmax * hdir;
  * interact - interaction takes lowest priority
  */
 
-//Lateral facing direction and movement
-var hdir = (right - left);
-var hspd = xspdmax * hdir;
-
 //Lateral Movement
 if (hdir != 0) {
     facing = hdir;
     xspd = hspd;
     //sprite_state = WALK;
-    change_sprite(WALK,-1,.25);
+    change_sprite(WALK,-1,.125);
 } else {
     change_sprite(IDLE,0,1);
-    xspd -= sign(xspd);
+    xspd -= xslowspd*sign(xspd);
 }
 
 //State Changes
@@ -67,7 +63,7 @@ if (up || (place_free(x,y+1))) {
     if (up) {
         yspd = -jspd;
     }
-    if (yspd < YSPDMAX) yspd ++;
+    if (yspd < YSPDMAX) yspd += GRAVITY;
     //state = player_jump_state;
     //sprite_state = JUMP;
     change_sprite(JUMP,0,1);
@@ -90,7 +86,7 @@ if (heavy) {
 if (range) {
     state = player_range_state;
     //sprite_state = RANGE;
-    change_sprite(RANGE,0,.75);
+    change_sprite(RANGE,0,.25);
     xspd = 0;
     return 0;
 }
