@@ -8,7 +8,6 @@
   <sprites name="sprites">
     <sprites name="Characters">
       <sprites name="Gun">
-        <sprite>sprites\gun_face_proto_sp</sprite>
         <sprite>sprites\gun_sp</sprite>
         <sprite>sprites\gun_walk_sp</sprite>
         <sprite>sprites\gun_run_sp</sprite>
@@ -30,7 +29,6 @@
         <sprite>sprites\gun_special_sp</sprite>
       </sprites>
       <sprites name="Sword">
-        <sprite>sprites\sword_face_proto_sp</sprite>
         <sprite>sprites\sword_sp</sprite>
         <sprite>sprites\sword_die_sp</sprite>
         <sprite>sprites\sword_draw_sp</sprite>
@@ -42,6 +40,11 @@
         <sprite>sprites\sword_strike_dash_sp</sprite>
         <sprite>sprites\slash_left_sp</sprite>
         <sprite>sprites\slash_right_sp</sprite>
+      </sprites>
+      <sprites name="Faces">
+        <sprite>sprites\gun_face_proto_sp</sprite>
+        <sprite>sprites\sword_face_proto_sp</sprite>
+        <sprite>sprites\ledo_face_proto_sp</sprite>
       </sprites>
     </sprites>
     <sprites name="UI">
@@ -104,10 +107,14 @@
         <script>scripts\player_range_state.gml</script>
       </scripts>
       <scripts name="Gun State Scripts">
+        <script>scripts\gun_move_state.gml</script>
         <script>scripts\gun_walk_state.gml</script>
+        <script>scripts\gun_crouch_state.gml</script>
+        <script>scripts\gun_jump_state.gml</script>
         <script>scripts\gun_range_state.gml</script>
       </scripts>
       <script>scripts\change_sprite.gml</script>
+      <script>scripts\check_jumping_physics.gml</script>
     </scripts>
     <scripts name="Graphical Scripts">
       <script>scripts\draw_gui_player.gml</script>

@@ -1,10 +1,10 @@
-///player_move_state
+///gun_move_state
 
 //Directions
 var left = input.left;
 var right = input.right;
 //Jump
-var up = input.up;
+var up_pressed = input.up_pressed;
 //Crouch
 var down = input.down;
 
@@ -52,21 +52,21 @@ if (space) {
     //sprite_state = DASH;
     return 0;
 }
-if (down) {
-    yspd = jspd;
-    state_index = CROUCH;
-    //sprite_state = CROUCH;
-    change_sprite(CROUCH,0,.25);
-    //return 0;
-}
-if (up || (place_free(x,y+1))) {
-    if (up) {
+if (up_pressed || (place_free(x,y+1))) {
+    if (up_pressed) {
         yspd = -jspd;
     }
     if (yspd < YSPDMAX) yspd += GRAVITY;
     state_index = JUMP;
-    change_sprite(JUMP,0,1);
+    change_sprite(JUMP,0,0);
     //return 0;
+}
+if (down) {
+    yspd = jspd;
+    xspd = 0;
+    state_index = CROUCH;
+    change_sprite(CROUCH,0,.25);
+    return 0;
 }
 if (light) {
     state_index = LIGHT;
@@ -85,7 +85,7 @@ if (heavy) {
 if (range) {
     state_index = RANGE;
     //sprite_state = RANGE;
-    change_sprite(RANGE,0,.25);
+    change_sprite(RANGE,0,.35);
     xspd = 0;
     return 0;
 }

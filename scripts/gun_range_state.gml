@@ -1,5 +1,6 @@
 ///gun_range_state
-
+// Available actions
+var range = input.range;
 // Stop, shoot
 xspd = 0;
 if (sprite_index != sprite[RANGE]) {
@@ -12,6 +13,12 @@ if (animation_hit_frame(2)) {
     ammo_index = modulo(ammo_index + 1, ammo_cylinder);
 }
 
+if (image_index > 2) {
+    if (range) {
+        image_index = 0;
+    }
+}
+
 if (animation_end()) {
-    state = player_move_state;
+    state_index = IDLE;
 }

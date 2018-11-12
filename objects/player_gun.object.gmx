@@ -41,11 +41,15 @@ xspdmax = 2.5;
 xslowspd = .35;
 yspdmax = YSPDMAX;
 jspd = 12;
+xjspdmax = 1;
 
-state = player_move_state;
-state_index = WALK;
+state = gun_move_state;
+state_index = IDLE;
+states[IDLE] = gun_move_state;
 states[WALK] = gun_walk_state;
 states[RANGE] = gun_range_state;
+states[JUMP] = gun_jump_state;
+states[CROUCH] = gun_crouch_state;
 
 image_xscale = 4;
 image_yscale = 4;
