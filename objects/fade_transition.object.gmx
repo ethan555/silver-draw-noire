@@ -4,8 +4,8 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>0</depth>
-  <persistent>0</persistent>
-  <parentName>character_parent</parentName>
+  <persistent>-1</persistent>
+  <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,42 +25,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Initiate Player Character
-event_inherited();
+            <string>/// Initialize transition
+image_alpha = 0;
+target_image_alpha = 1;
+next_room = noone;
 
-hp = 1;
-energy = 1;
+fade_out_spd = .0625;
+fade_in_spd = .025;
 
-xspd = 0;
-yspd = 0;
-xspdmax = 5;
-yspdmax = YSPDMAX;
-jspd = 12;
-
-//state = player_move_state;
-state_index = IDLE;
-states[IDLE] = gun_move_state;
-states[WALK] = gun_walk_state;
-states[RANGE] = gun_range_state;
-states[JUMP] = gun_jump_state;
-states[CROUCH] = gun_crouch_state;
-
-image_xscale = 4;
-image_yscale = 4;
-
-facing = 1;
-mask_index = gun_sp;
-
-sprite[IDLE] = gun_sp;
-sprite[WALK] = gun_walk_sp;
-sprite[RUN] = gun_run_sp;
-sprite[CROUCH] = gun_crouch_sp;
-sprite[DASH] = gun_dash_sp;
-sprite[JUMP] = gun_jump_sp;
-sprite[LIGHT] = gun_light_sp;
-sprite[HEAVY] = gun_heavy_sp;
-sprite[RANGE] = gun_range_sp;
-sprite[SPECIAL] = gun_special_sp;
 </string>
           </argument>
         </arguments>
@@ -83,17 +55,30 @@ sprite[SPECIAL] = gun_special_sp;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Execute state
-script_execute(states[state_index]);
-if (abs(xprevious - x) &gt; 5 || abs(yprevious - y) &gt; 5) {
-    trail_add(sprite_index,image_index,x,y,image_xscale,image_yscale,image_angle,image_blend,image_alpha);
+            <string>/// Fade
+if (image_alpha != target_image_alpha) {
+    var fade_spd = fade_out_spd;
+    if (target_image_alpha != 1) {fade_spd = fade_in_spd;}
+    // Approach the target alpha
+    image_alpha = approach(image_alpha, target_image_alpha, fade_spd);
+} else {
+    if (image_alpha == 1) {
+        // Go to next room
+        target_image_alpha = 0;
+        if (next_room != noone) {
+            room_goto(next_room);
+        }
+    } else {
+        // Destroy transition obj
+        instance_destroy();
+    }
 }
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="0">
+    <event eventtype="8" enumb="74">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -110,9 +95,23 @@ if (abs(xprevious - x) &gt; 5 || abs(yprevious - y) &gt; 5) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw sprite state
-image_xscale = facing*abs(image_xscale);
-draw_self();
+            <string>/// Draw fade
+
+/* Draw the blue fade
+draw_set_blend_mode(bm_add);
+draw_set_colour(c_blue);
+draw_set_alpha(image_alpha/2);
+draw_rectangle(0, 0, display_get_gui_width(), display_get_gui_height(), false);*/
+
+// Draw the black fade
+draw_set_blend_mode(bm_normal);
+draw_set_colour(c_black);
+draw_set_alpha(image_alpha);
+draw_rectangle(0, 0, display_get_gui_width(), display_get_gui_height(), false);
+
+// Set back to normal
+draw_set_colour(c_white);
+draw_set_alpha(1);
 </string>
           </argument>
         </arguments>

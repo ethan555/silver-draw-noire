@@ -6,6 +6,13 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
+    <sprites name="Control">
+      <sprite>sprites\door_sp</sprite>
+      <sprite>sprites\wall_sp</sprite>
+      <sprite>sprites\startup_sp</sprite>
+      <sprite>sprites\startup_2_sp</sprite>
+      <sprite>sprites\startup_true_sp</sprite>
+    </sprites>
     <sprites name="Characters">
       <sprites name="Gun">
         <sprite>sprites\gun_sp</sprite>
@@ -70,10 +77,6 @@
     <sprite>sprites\guy_target_sp</sprite>
     <sprite>sprites\laptop_sp</sprite>
     <sprite>sprites\window_sp</sprite>
-    <sprite>sprites\startup_sp</sprite>
-    <sprite>sprites\startup_2_sp</sprite>
-    <sprite>sprites\startup_true_sp</sprite>
-    <sprite>sprites\wall_sp</sprite>
     <sprite>sprites\rain_sp</sprite>
     <sprite>sprites\bullet_sp</sprite>
   </sprites>
@@ -118,6 +121,7 @@
     </scripts>
     <scripts name="Graphical Scripts">
       <script>scripts\draw_gui_player.gml</script>
+      <script>scripts\trail_add.gml</script>
     </scripts>
     <scripts name="Bullet Scripts">
       <script>scripts\set_bullet_speed.gml</script>
@@ -126,6 +130,11 @@
       <script>scripts\gun_fire_player.gml</script>
     </scripts>
   </scripts>
+  <shaders name="shaders">
+    <shader type="GLSLES">shaders\standard_sh.shader</shader>
+    <shader type="GLSLES">shaders\invert_sh.shader</shader>
+    <shader type="GLSLES">shaders\red_sh.shader</shader>
+  </shaders>
   <fonts name="fonts">
     <font>fonts\font0</font>
   </fonts>
@@ -137,6 +146,7 @@
       <object>objects\view_parent</object>
       <object>objects\view_obj</object>
       <object>objects\logo_skippable</object>
+      <object>objects\door</object>
     </objects>
     <objects name="Characters">
       <object>objects\character_parent</object>
@@ -149,6 +159,9 @@
       <object>objects\gui_handler</object>
       <object>objects\weather</object>
       <object>objects\vfx_particles</object>
+      <object>objects\fade_transition</object>
+      <object>objects\trail_drawer</object>
+      <object>objects\draw_master</object>
     </objects>
     <object>objects\bullet_parent</object>
     <object>objects\bullet_player</object>

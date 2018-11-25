@@ -678,7 +678,9 @@
     <option_xbone_title_id></option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="30">
+    <constants number="32">
+      <constant name="TIME_STANDARD">1</constant>
+      <constant name="TIME_SHIFT">.25</constant>
       <constant name="FONT_CHARS">"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.,!?'-+/:"</constant>
       <constant name="GRAVITY">.5</constant>
       <constant name="YSPDMAX">16</constant>

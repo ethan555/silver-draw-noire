@@ -4,11 +4,11 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>0</depth>
-  <persistent>0</persistent>
-  <parentName>character_parent</parentName>
+  <persistent>-1</persistent>
+  <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
-    <event eventtype="0" enumb="0">
+    <event eventtype="7" enumb="2">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -25,48 +25,17 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Initiate Player Character
-event_inherited();
+            <string>///Catch the application surface
 
-hp = 1;
-energy = 1;
+globalvar application_shader;
+application_shader = noone;
 
-xspd = 0;
-yspd = 0;
-xspdmax = 5;
-yspdmax = YSPDMAX;
-jspd = 12;
-
-//state = player_move_state;
-state_index = IDLE;
-states[IDLE] = gun_move_state;
-states[WALK] = gun_walk_state;
-states[RANGE] = gun_range_state;
-states[JUMP] = gun_jump_state;
-states[CROUCH] = gun_crouch_state;
-
-image_xscale = 4;
-image_yscale = 4;
-
-facing = 1;
-mask_index = gun_sp;
-
-sprite[IDLE] = gun_sp;
-sprite[WALK] = gun_walk_sp;
-sprite[RUN] = gun_run_sp;
-sprite[CROUCH] = gun_crouch_sp;
-sprite[DASH] = gun_dash_sp;
-sprite[JUMP] = gun_jump_sp;
-sprite[LIGHT] = gun_light_sp;
-sprite[HEAVY] = gun_heavy_sp;
-sprite[RANGE] = gun_range_sp;
-sprite[SPECIAL] = gun_special_sp;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="8" enumb="77">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -83,36 +52,14 @@ sprite[SPECIAL] = gun_special_sp;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Execute state
-script_execute(states[state_index]);
-if (abs(xprevious - x) &gt; 5 || abs(yprevious - y) &gt; 5) {
-    trail_add(sprite_index,image_index,x,y,image_xscale,image_yscale,image_angle,image_blend,image_alpha);
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Draw sprite state
-image_xscale = facing*abs(image_xscale);
-draw_self();
+            <string>///Draw the application surface
+
+application_surface_draw_enable(false);
+
+if (application_shader != noone) {shader_set(application_shader);}
+draw_surface(application_surface,0,0);
+shader_reset();
+
 </string>
           </argument>
         </arguments>

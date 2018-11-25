@@ -4,8 +4,8 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>0</depth>
-  <persistent>0</persistent>
-  <parentName>character_parent</parentName>
+  <persistent>-1</persistent>
+  <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,48 +25,18 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Initiate Player Character
-event_inherited();
+            <string>///Initialize trail drawer
+depth = 100;
 
-hp = 1;
-energy = 1;
+trail_list = ds_list_create();
 
-xspd = 0;
-yspd = 0;
-xspdmax = 5;
-yspdmax = YSPDMAX;
-jspd = 12;
-
-//state = player_move_state;
-state_index = IDLE;
-states[IDLE] = gun_move_state;
-states[WALK] = gun_walk_state;
-states[RANGE] = gun_range_state;
-states[JUMP] = gun_jump_state;
-states[CROUCH] = gun_crouch_state;
-
-image_xscale = 4;
-image_yscale = 4;
-
-facing = 1;
-mask_index = gun_sp;
-
-sprite[IDLE] = gun_sp;
-sprite[WALK] = gun_walk_sp;
-sprite[RUN] = gun_run_sp;
-sprite[CROUCH] = gun_crouch_sp;
-sprite[DASH] = gun_dash_sp;
-sprite[JUMP] = gun_jump_sp;
-sprite[LIGHT] = gun_light_sp;
-sprite[HEAVY] = gun_heavy_sp;
-sprite[RANGE] = gun_range_sp;
-sprite[SPECIAL] = gun_special_sp;
+fade_rate = .1;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="7" enumb="3">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -83,11 +53,8 @@ sprite[SPECIAL] = gun_special_sp;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Execute state
-script_execute(states[state_index]);
-if (abs(xprevious - x) &gt; 5 || abs(yprevious - y) &gt; 5) {
-    trail_add(sprite_index,image_index,x,y,image_xscale,image_yscale,image_angle,image_blend,image_alpha);
-}
+            <string>///Cleanup
+ds_list_destroy(trail_list);
 </string>
           </argument>
         </arguments>
@@ -110,9 +77,34 @@ if (abs(xprevious - x) &gt; 5 || abs(yprevious - y) &gt; 5) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw sprite state
-image_xscale = facing*abs(image_xscale);
-draw_self();
+            <string>///Draw the afterimages
+
+var afterimage, alpha;
+
+var i, length = ds_list_size(trail_list);
+for (i = 0; i &lt; length; i ++) {
+    afterimage = trail_list[| i];
+    alpha = afterimage[? "alpha"];
+    draw_sprite_ext(
+        afterimage[? "sprite"],
+        afterimage[? "index"],
+        afterimage[? "xpos"],
+        afterimage[? "ypos"],
+        afterimage[? "xscale"],
+        afterimage[? "yscale"],
+        afterimage[? "rot"],
+        afterimage[? "blend"],
+        alpha
+    );
+    alpha -= fade_rate;
+    if (alpha &lt;= 0) {
+        ds_list_delete(trail_list, i);
+        ds_map_destroy(afterimage);
+        i --;
+        length --;
+    } else {afterimage[? "alpha"] = alpha;}
+}
+
 </string>
           </argument>
         </arguments>

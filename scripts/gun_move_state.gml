@@ -37,13 +37,17 @@ if (hdir != 0) {
     change_sprite(WALK,-1,.125);
 } else {
     change_sprite(IDLE,0,1);
-    xspd -= xslowspd*sign(xspd);
+    var sig = sign(xspd);
+    xspd -= xslowspd*sig;
+    if (sign(xspd) != sig) {xspd = 0;}
 }
 
 //State Changes
 if (shift) {
-    state_index = SPECIAL;
+    //state_index = SPECIAL;
     //Make things shifty
+    if (application_shader == invert_sh) {application_shader = noone;}
+    else {application_shader = invert_sh;}
     return 0;
 }
 if (space) {

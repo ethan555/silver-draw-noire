@@ -107,7 +107,6 @@ sprite[SPECIAL] = gun_special_sp;
             <string>///Draw self and then draw cape?
 event_inherited();
 
-
 var i, xold, yold, xnew, ynew, ip;
 var px, py, nx, ny, vx, vy, d;
 
@@ -117,7 +116,7 @@ clothx2[0] = x-cloth_xadj;
 clothy2[0] = y+cloth_yadj;
 
 //First Cloth
-draw_set_colour(c_white);//image_blend);
+draw_set_colour(image_blend);//c_white);//image_blend);
 draw_primitive_begin(pr_trianglestrip);
 for (i = 1; i &lt; cloth_length; i ++) {
     if (weather.wind)
