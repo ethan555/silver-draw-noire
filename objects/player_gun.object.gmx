@@ -37,11 +37,13 @@ ammo_index = 0; //from 0 to ammo - 1
 
 xspd = 0;
 yspd = 0;
-xspdmax = 2.5;
+xwalkspdmax = 2.5;
+xspdmax = 4;
+xdodgespd = 6;
 xslowspd = .35;
 yspdmax = YSPDMAX;
 jspd = 12;
-xjspdmax = 1;
+xjspdmax = 4;
 
 state = gun_move_state;
 state_index = IDLE;
@@ -49,6 +51,7 @@ states[IDLE] = gun_move_state;
 states[WALK] = gun_walk_state;
 states[RANGE] = gun_range_state;
 states[JUMP] = gun_jump_state;
+states[DODGE] = gun_dodge_state;
 states[CROUCH] = gun_crouch_state;
 
 image_xscale = 4;
@@ -76,7 +79,7 @@ sprite[IDLE] = gun_sp;
 sprite[WALK] = gun_walk_sp;
 sprite[RUN] = gun_run_sp;
 sprite[CROUCH] = gun_crouch_sp;
-sprite[DASH] = gun_dash_sp;
+sprite[DODGE] = gun_dodge_sp;
 sprite[JUMP] = gun_jump_sp;
 sprite[LIGHT] = gun_light_sp;
 sprite[HEAVY] = gun_heavy_sp;
@@ -104,7 +107,7 @@ sprite[SPECIAL] = gun_special_sp;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw self and then draw cape?
+            <string>///Draw self and then draw cape
 event_inherited();
 
 var i, xold, yold, xnew, ynew, ip;
@@ -120,8 +123,8 @@ draw_set_colour(image_blend);//c_white);//image_blend);
 draw_primitive_begin(pr_trianglestrip);
 for (i = 1; i &lt; cloth_length; i ++) {
     if (weather.wind)
-        clothx1[i] += weather.windspd;
-    clothy1[i] += i/4;
+        clothx1[i] += weather.windspd * time;
+    clothy1[i] += (i/4) * time;
     ip = (cloth_length-i)/cloth_length;
     //First part
     if (point_distance(clothx1[i-1],clothy1[i-1],clothx1[i],clothy1[i]) &gt; cloth_dist) {
@@ -163,8 +166,8 @@ draw_primitive_end();
 draw_primitive_begin(pr_trianglestrip);
 for (i = 1; i &lt; cloth_length; i ++) {
     if (weather.wind)
-        clothx2[i] += weather.windspd;
-    clothy2[i] += i/4;
+        clothx2[i] += weather.windspd * time;
+    clothy2[i] += (i/4) * time;
     ip = (cloth_length-i)/cloth_length;
     //Second part
     if (point_distance(clothx2[i-1],clothy2[i-1],clothx2[i],clothy2[i]) &gt; cloth_dist) {

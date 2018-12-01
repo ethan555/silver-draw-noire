@@ -688,7 +688,7 @@
       <constant name="WALK">1</constant>
       <constant name="RUN">2</constant>
       <constant name="CROUCH">3</constant>
-      <constant name="DASH">4</constant>
+      <constant name="DODGE">4</constant>
       <constant name="JUMP">5</constant>
       <constant name="LIGHT">6</constant>
       <constant name="HEAVY">7</constant>

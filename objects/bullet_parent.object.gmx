@@ -103,9 +103,9 @@ var i;
 var step = BULLET_SPEED / 16;
 for (i = 0; i &lt; seg_num; i ++) {
     var len = i*step;
-    if (!place_empty(x + lengthdir_x(len, angle), y + lengthdir_y(len, angle))) {
+    if (!place_empty(x + lengthdir_x(len * time, angle), y + lengthdir_y(len * time, angle))) {
         // If we are colliding with a solid, wall, otherwise it's a target
-        if (!place_free(x + lengthdir_x(len, angle), y + lengthdir_y(len, angle))) {
+        if (!place_free(x + lengthdir_x(len * time, angle), y + lengthdir_y(len * time, angle))) {
             // Solid collision code
             script_execute(solid_collision);
         } else {
@@ -115,8 +115,8 @@ for (i = 0; i &lt; seg_num; i ++) {
     }
 }
 
-x += xspd;
-y += yspd;
+x += xspd * time;
+y += yspd * time;
 </string>
           </argument>
         </arguments>

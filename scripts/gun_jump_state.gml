@@ -32,7 +32,7 @@ if (up_pressed || (place_free(x,y+1))) {
     if (up_pressed) {
         if (!place_free(x,y+1)) {yspd = -jspd;}
     }
-    if (yspd < YSPDMAX) yspd += GRAVITY;
+    if (yspd < YSPDMAX) yspd += GRAVITY * time;
     state_index = JUMP;
     image_index = sign(round(yspd/4))+1;
 }

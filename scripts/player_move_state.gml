@@ -47,9 +47,9 @@ if (shift) {
     return 0;
 }
 if (space) {
-    state_index = DASH;
-    change_sprite(DASH,0,1);
-    //sprite_state = DASH;
+    state_index = DODGE;
+    change_sprite(DODGE,0,1);
+    //sprite_state = DODGE;
     return 0;
 }
 if (down) {

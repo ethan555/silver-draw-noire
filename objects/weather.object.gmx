@@ -123,29 +123,33 @@ if (wind) {
 }*/
 if (rain) {
     depth = RAIN_DEPTH;
-    
-    //rainxspd = clamp(rainxspd + .05*sign(windspd-rainxspd),.25*windspdmin,.25*windspdmax);
-    
-    //raindir = point_direction(0,0,rainxspd,rainyspd);
-    part_type_direction(raindrop,raindir,raindir,.01,0);
-    
-    repeat(rain_density) {
-        part_particles_create(raindrop,view_xview[0]+random(view_wview[0]*1.5),view_yview[0]-random(16),raindrop,1);
-    }
-    
-    depth = -RAIN_DEPTH;
-    
-    repeat(rain_density) {
-        part_particles_create(raindrop,view_xview[0]+random(view_wview[0]*1.5),view_yview[0]-random(16),raindrop,1);
+    if (time != TIME_STANDARD) {part_system_automatic_update(rain_system, false);}
+    else {
+        part_system_automatic_update(rain_system, true);
+        part_type_speed(raindrop,rainspd * time,rainspd,.01,0);
+        //rainxspd = clamp(rainxspd + .05*sign(windspd-rainxspd),.25*windspdmin,.25*windspdmax);
+        
+        //raindir = point_direction(0,0,rainxspd,rainyspd);
+        part_type_direction(raindrop,raindir,raindir,.01,0);
+        
+        repeat(rain_density) {
+            part_particles_create(raindrop,view_xview[0]+random(view_wview[0]*1.5),view_yview[0]-random(16),raindrop,1);
+        }
+        
+        depth = -RAIN_DEPTH;
+        
+        repeat(rain_density) {
+            part_particles_create(raindrop,view_xview[0]+random(view_wview[0]*1.5),view_yview[0]-random(16),raindrop,1);
+        }
     }
 }
 if (lightning) {
-    //Show me the lightning!
+    //Show me the magic!
 }
 if (fog) {
-    fogx += fogxspd;
+    fogx += fogxspd * time;
     //fogxspd = clamp(fogxspd + .1*sign(windspd-rainxspd),-.5,.5);
-    fogy += fogyspd;
+    fogy += fogyspd * time;
 }
 </string>
           </argument>

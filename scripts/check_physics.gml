@@ -30,6 +30,6 @@ if (!place_free(x+xspd,y+yspd)) {
     }
 }
 
-x += xspd;
-y += yspd;
+x += xspd * time;
+y += yspd * time;
 

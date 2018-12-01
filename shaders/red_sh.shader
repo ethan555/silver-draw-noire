@@ -30,7 +30,7 @@ void main()
     vec4 original = texture2D( gm_BaseTexture, v_vTexcoord );
     
     // Get the red version of the colors
-    float red = original.r;
+    float red = (original.r + original.g + original.b)/3.0;
     float green = 0.0;
     float blue = 0.0;
     float alpha = original.a;

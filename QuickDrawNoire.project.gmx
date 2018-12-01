@@ -21,7 +21,7 @@
         <sprite>sprites\gun_crouch_sp</sprite>
         <sprite>sprites\gun_crouched_sp</sprite>
         <sprite>sprites\gun_kick_sp</sprite>
-        <sprite>sprites\gun_dash_sp</sprite>
+        <sprite>sprites\gun_dodge_sp</sprite>
         <sprite>sprites\gun_drawn_sp</sprite>
         <sprite>sprites\gun_roll_sp</sprite>
         <sprite>sprites\gun_shoot_left_sp</sprite>
@@ -87,6 +87,7 @@
   <scripts name="scripts">
     <scripts name="Universal Scripts">
       <script>scripts\animation_end.gml</script>
+      <script>scripts\animation_end_reverse.gml</script>
       <script>scripts\animation_hit_frame.gml</script>
       <script>scripts\approach.gml</script>
       <script>scripts\check_physics.gml</script>
@@ -115,6 +116,7 @@
         <script>scripts\gun_crouch_state.gml</script>
         <script>scripts\gun_jump_state.gml</script>
         <script>scripts\gun_range_state.gml</script>
+        <script>scripts\gun_dodge_state.gml</script>
       </scripts>
       <script>scripts\change_sprite.gml</script>
       <script>scripts\check_jumping_physics.gml</script>
@@ -143,6 +145,7 @@
       <object>objects\control</object>
       <object>objects\input</object>
       <object>objects\player_stats</object>
+      <object>objects\time_control</object>
       <object>objects\view_parent</object>
       <object>objects\view_obj</object>
       <object>objects\logo_skippable</object>

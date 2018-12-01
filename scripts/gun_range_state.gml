@@ -4,7 +4,7 @@ var range = input.range;
 // Stop, shoot
 xspd = 0;
 if (sprite_index != sprite[RANGE]) {
-    change_sprite(sprite[RANGE], 0, .5);
+    change_sprite(sprite[RANGE], 0, .5 * time);
 }
 
 if (animation_hit_frame(2)) {
