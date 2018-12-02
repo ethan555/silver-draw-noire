@@ -50,6 +50,7 @@ image_yscale = 4;
 
 facing = 1;
 trail = false;
+trailtimer = 0;
 mask_index = gun_sp;
 
 sprite[IDLE] = gun_sp;
@@ -86,7 +87,9 @@ sprite[SPECIAL] = gun_special_sp;
             <kind>1</kind>
             <string>///Execute state
 script_execute(states[state_index]);
-if (trail) {
+trailtimer += time;
+trailtimer = modulo(trailtimer,2);
+if (trail &amp;&amp; trailtimer == 0) {
     trail_add(sprite_index,image_index,x,y,image_xscale,image_yscale,image_angle,image_blend,image_alpha);
 }
 </string>

@@ -49,7 +49,7 @@ if (shift) {
     if (application_shader == invert_sh) {application_shader = noone;}
     else {application_shader = invert_sh;}
     if (time == TIME_SHIFT) {time = TIME_STANDARD;}
-    else {time = TIME_SHIFT;}
+    else {time = TIME_SHIFT; trail = true;}
     return 0;
 }
 if (special) {

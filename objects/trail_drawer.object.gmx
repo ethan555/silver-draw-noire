@@ -96,7 +96,7 @@ for (i = 0; i &lt; length; i ++) {
         afterimage[? "blend"],
         alpha
     );
-    alpha -= fade_rate;
+    alpha -= fade_rate * time;
     if (alpha &lt;= 0) {
         ds_list_delete(trail_list, i);
         ds_map_destroy(afterimage);
