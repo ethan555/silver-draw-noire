@@ -10,7 +10,7 @@ if (place_free(x,y+1)) {
     state_index = JUMP;
     change_sprite(JUMP,0,0);
     check_jumping_physics();
-    trail = false;
+    if (time == TIME_STANDARD) {trail = false;}
     return 0;
 }
 
@@ -19,12 +19,12 @@ xspd = facing * xdodgespd * sign(image_speed);
 if (image_speed > 0) {
 if (animation_end()) {
     state_index = IDLE;
-    trail = false;
+    if (time == TIME_STANDARD) {trail = false;}
 }
 } else {
     if (animation_end_reverse()) {
         state_index = IDLE;
-        trail = false;
+        if (time == TIME_STANDARD) {trail = false;}
     }
 }
 

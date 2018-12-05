@@ -678,7 +678,7 @@
     <option_xbone_title_id></option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="32">
+    <constants number="37">
       <constant name="TIME_STANDARD">1</constant>
       <constant name="TIME_SHIFT">.25</constant>
       <constant name="FONT_CHARS">"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.,!?'-+/:"</constant>
@@ -701,6 +701,11 @@
       <constant name="RANGE_F1">16</constant>
       <constant name="SPECIAL">9</constant>
       <constant name="INTERACT">10</constant>
+      <constant name="STAIRS_ENTER">20</constant>
+      <constant name="STAIRS_EXIT">21</constant>
+      <constant name="WALL_DEPTH">900</constant>
+      <constant name="DOOR_DEPTH">850</constant>
+      <constant name="TRAIL_DEPTH">5</constant>
       <constant name="RAIN_DEPTH">1000</constant>
       <constant name="GUN">0</constant>
       <constant name="SWORD">1</constant>

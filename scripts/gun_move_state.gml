@@ -8,6 +8,9 @@ var up = input.up;
 //Crouch
 var down = input.down;
 
+//Walk/Run
+var walk = input.walk;
+
 //Jump
 var space = input.space;
 //Phase Shift
@@ -20,7 +23,7 @@ var special = input.special;
 var interact = input.interact;
 //Lateral facing direction and movement
 var hdir = (right - left);
-var hspd = xspdmax * hdir;
+var hspd = hdir;//xspdmax * hdir;
 
 /* Order of Actions:
  * hspd - Direction of dodge, attacks, etc.
@@ -32,14 +35,26 @@ var hspd = xspdmax * hdir;
 //Lateral Movement
 if (hdir != 0) {
     facing = hdir;
+    if (walking) {
+        change_sprite(WALK,-1,.125 * time);
+        hspd *= xwalkspdmax;
+    } else {
+        change_sprite(RUN,-1,.25 * time);
+        hspd *= xspdmax;
+    }
     xspd = hspd;
     //sprite_state = WALK;
-    change_sprite(WALK,-1,.125 * time);
+    
 } else {
     change_sprite(IDLE,0,1 * time);
     var sig = sign(xspd);
     xspd -= xslowspd*sig * time;
     if (sign(xspd) != sig) {xspd = 0;}
+}
+
+//Are we walking or running?
+if (walk) {
+    walking = !walking;
 }
 
 //State Changes
@@ -48,7 +63,7 @@ if (shift) {
     //Make things shifty
     if (application_shader == invert_sh) {application_shader = noone;}
     else {application_shader = invert_sh;}
-    if (time == TIME_SHIFT) {time = TIME_STANDARD;}
+    if (time == TIME_SHIFT) {time = TIME_STANDARD; trail = false; trailtimer = 0;}
     else {time = TIME_SHIFT; trail = true;}
     return 0;
 }
@@ -112,8 +127,9 @@ if (range) {
     return 0;
 }
 
-if (interact) {
+if (space || interact) {
     //Interact with nearby interactables
+    player_interact();
     return 0;
 }
 

@@ -22,6 +22,8 @@
         <sprite>sprites\gun_crouched_sp</sprite>
         <sprite>sprites\gun_kick_sp</sprite>
         <sprite>sprites\gun_dodge_sp</sprite>
+        <sprite>sprites\gun_stairs_enter_sp</sprite>
+        <sprite>sprites\gun_stairs_exit_sp</sprite>
         <sprite>sprites\gun_drawn_sp</sprite>
         <sprite>sprites\gun_roll_sp</sprite>
         <sprite>sprites\gun_shoot_left_sp</sprite>
@@ -79,6 +81,7 @@
     <sprite>sprites\window_sp</sprite>
     <sprite>sprites\rain_sp</sprite>
     <sprite>sprites\bullet_sp</sprite>
+    <sprite>sprites\stairs_sp</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\seamless_fog</background>
@@ -117,9 +120,11 @@
         <script>scripts\gun_jump_state.gml</script>
         <script>scripts\gun_range_state.gml</script>
         <script>scripts\gun_dodge_state.gml</script>
+        <script>scripts\gun_stairs_enter_state.gml</script>
       </scripts>
       <script>scripts\change_sprite.gml</script>
       <script>scripts\check_jumping_physics.gml</script>
+      <script>scripts\player_interact.gml</script>
     </scripts>
     <scripts name="Graphical Scripts">
       <script>scripts\draw_gui_player.gml</script>
@@ -149,7 +154,6 @@
       <object>objects\view_parent</object>
       <object>objects\view_obj</object>
       <object>objects\logo_skippable</object>
-      <object>objects\door</object>
     </objects>
     <objects name="Characters">
       <object>objects\character_parent</object>
@@ -157,7 +161,14 @@
       <object>objects\player_gun</object>
       <object>objects\player_sword</object>
     </objects>
-    <object>objects\wall</object>
+    <objects name="World Objects">
+      <object>objects\wall</object>
+      <object>objects\door</object>
+    </objects>
+    <objects name="Interactables">
+      <object>objects\interactable_parent</object>
+      <object>objects\stairs</object>
+    </objects>
     <objects name="VFX">
       <object>objects\gui_handler</object>
       <object>objects\weather</object>
@@ -165,10 +176,12 @@
       <object>objects\fade_transition</object>
       <object>objects\trail_drawer</object>
       <object>objects\draw_master</object>
+      <object>objects\particles_sparks</object>
     </objects>
-    <object>objects\bullet_parent</object>
-    <object>objects\bullet_player</object>
-    <object>objects\particles_sparks</object>
+    <objects name="Projectiles">
+      <object>objects\bullet_parent</object>
+      <object>objects\bullet_player</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\init_room</room>

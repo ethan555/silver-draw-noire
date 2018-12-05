@@ -27,6 +27,8 @@
             <kind>1</kind>
             <string>///Initiate Weather
 
+depth = RAIN_DEPTH;
+
 wind = true;
 windspd = -1;
 windspdmin = -3;
@@ -176,14 +178,14 @@ if (fog) {
             <string>///Draw weather over everything
 
 // Draw Fog
-if (fog)
-    draw_background_tiled_ext(seamless_fog,fogx,fogy,1,1,image_blend,.25);
+/*if (fog)
+    draw_background_tiled_ext(seamless_fog,fogx,fogy,1,1,image_blend,.25);*/
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="0">
+    <event eventtype="8" enumb="72">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -200,7 +202,7 @@ if (fog)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw rain when inside
+            <string>///Draw fog/rain when inside
 /*if (rain) {
     depth = RAIN_DEPTH;
     
@@ -211,6 +213,9 @@ if (fog)
         part_particles_create(raindrop,random(view_hview[0]*1.5),0,raindrop,1);
     }
 }*/
+
+if (fog)
+    draw_background_tiled_ext(seamless_fog,fogx,fogy,1,1,image_blend,.25);
 </string>
           </argument>
         </arguments>

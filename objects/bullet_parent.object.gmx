@@ -38,7 +38,7 @@ target_collision = bullet_hit_target;
 
 // Bullet trail
 segment = 2;
-seg_num = 2;
+seg_num = 4;
 trailw = 1;
 trailx = initialize_array(seg_num, x);
 traily = initialize_array(seg_num, y);
@@ -69,6 +69,7 @@ image_blend = c_white;
             <string>/// Update Bullet Trail
 
 // Update Trail
+
 for (i = 0; i &lt; seg_num - 1; i ++) {
     trailx[i] = trailx[i+1];
     traily[i] = traily[i+1];
@@ -115,8 +116,8 @@ for (i = 0; i &lt; seg_num; i ++) {
     }
 }
 
-x += xspd * time;
-y += yspd * time;
+x += xspd * time * time;
+y += yspd * time * time;
 </string>
           </argument>
         </arguments>

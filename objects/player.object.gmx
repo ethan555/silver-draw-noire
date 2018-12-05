@@ -33,9 +33,18 @@ energy = 1;
 
 xspd = 0;
 yspd = 0;
-xspdmax = 5;
+xwalkspdmax = 2.5;
+xspdmax = 4;
+xdodgespd = 6;
+xslowspd = .35;
 yspdmax = YSPDMAX;
 jspd = 12;
+xjspdmax = 4;
+walking = false;
+
+draw = true;
+stairs_dest = noone;
+stairs_dist = 0;
 
 //state = player_move_state;
 state_index = IDLE;
@@ -68,6 +77,29 @@ sprite[SPECIAL] = gun_special_sp;
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Interaction triggers
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -87,6 +119,7 @@ sprite[SPECIAL] = gun_special_sp;
             <kind>1</kind>
             <string>///Execute state
 script_execute(states[state_index]);
+
 trailtimer += time;
 trailtimer = modulo(trailtimer,2);
 if (trail &amp;&amp; trailtimer == 0) {

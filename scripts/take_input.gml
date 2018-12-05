@@ -15,4 +15,6 @@ heavy = keyboard_check_pressed(ord('S'));
 range = keyboard_check_pressed(ord('D'));
 special = keyboard_check_pressed(ord('F'));
 
+walk = keyboard_check_pressed(ord('Z'));
+
 interact = keyboard_check_pressed(ord('E'));
