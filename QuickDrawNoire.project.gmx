@@ -72,9 +72,10 @@
       <sprite>sprites\font_sp</sprite>
     </sprites>
     <sprite>sprites\guy_detailed</sprite>
+    <sprite>sprites\guy_sp</sprite>
+    <sprite>sprites\guy_run_sp</sprite>
     <sprite>sprites\guy_draw_sp</sprite>
     <sprite>sprites\guy_shoot_sp</sprite>
-    <sprite>sprites\guy_sp</sprite>
     <sprite>sprites\deadguy_sp</sprite>
     <sprite>sprites\guy_target_sp</sprite>
     <sprite>sprites\laptop_sp</sprite>
@@ -157,9 +158,15 @@
     </objects>
     <objects name="Characters">
       <object>objects\character_parent</object>
-      <object>objects\player</object>
-      <object>objects\player_gun</object>
-      <object>objects\player_sword</object>
+      <objects name="Player">
+        <object>objects\player</object>
+        <object>objects\player_gun</object>
+        <object>objects\player_sword</object>
+      </objects>
+      <objects name="Enemy">
+        <object>objects\enemy_parent</object>
+        <object>objects\guy</object>
+      </objects>
     </objects>
     <objects name="World Objects">
       <object>objects\wall</object>
