@@ -15,10 +15,12 @@ if (animation_hit_frame(2)) {
 
 if (image_index > 2) {
     if (range) {
-        image_index = 0;
+        image_index = 1;
     }
 }
 
 if (animation_end()) {
+    //change_sprite(IDLE,0,1 * time);
+    image_speed = 0;
     state_index = IDLE;
 }

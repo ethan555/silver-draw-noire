@@ -46,7 +46,8 @@ if (hdir != 0) {
     //sprite_state = WALK;
     
 } else {
-    change_sprite(IDLE,0,1 * time);
+    if (xspd != 0)
+        change_sprite(IDLE,0,1 * time);
     var sig = sign(xspd);
     xspd -= xslowspd*sig * time;
     if (sign(xspd) != sig) {xspd = 0;}
@@ -122,7 +123,9 @@ if (heavy) {
 if (range) {
     state_index = RANGE;
     //sprite_state = RANGE;
-    change_sprite(RANGE,0,.35 * time);
+    var ind = 0;
+    if (sprite_index == sprite[RANGE]) ind = 1;
+    change_sprite(RANGE,ind,.35 * time);
     xspd = 0;
     return 0;
 }
@@ -134,5 +137,5 @@ if (space || interact) {
 }
 
 //If made it through, then we are just moving
-check_physics();
+check_player_physics();
 

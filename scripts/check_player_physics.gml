@@ -1,14 +1,13 @@
-///check_jumping_physics
+///check_player_physics
 
-var landed = 0;
 //Check our horizontals
-if (!place_free(x+xspd * time,y)) {
+if (place_meeting(x+xspd,y,wall) || place_meeting(x+xspd,y,enemy_parent)) {
     //Find where to go and go there
     var i, xdir, abs_x;
     xdir = sign(xspd);
-    abs_x = abs(xspd * time);
+    abs_x = abs(xspd);
     for (i = 1; i <= abs_x; i ++) {
-        if (!place_free(x+i*xdir,y+yspd * time)) {
+        if (!place_free(x+i*xdir,y+yspd)) {
             x += (i-1)*xdir;
             xspd = 0;
             break;
@@ -17,34 +16,18 @@ if (!place_free(x+xspd * time,y)) {
 }
 
 //Check our diagonals
-if (!place_free(x+xspd * time,y+yspd * time)) {
+if (place_meeting(x+xspd,y+yspd,wall) || place_meeting(x+xspd,y+yspd,enemy_parent)) {
     //Find where to go and go there
     var i, ydir, abs_y;
     ydir = sign(yspd);
-    abs_y = abs(yspd * time);
+    abs_y = abs(yspd);
     for (i = 1; i <= abs_y; i ++) {
         if (!place_free(x+xspd,y+i*ydir)) {
             y += (i-1)*ydir;
             yspd = 0;
-            landed = 1;
             break;
         }
     }
-    if (ydir < 0 && landed == 1) {landed = 2;}
-}
-
-if (!place_free(x,y)) {
-    while (!place_free(x,y+yspd)) {
-        yspd --;
-    }
-    y = y+yspd;
-    yspd = 0;
-    landed = 1;
-}
-
-if (landed == 1) {
-    state_index = IDLE;
-    change_sprite(IDLE,0,1);
 }
 
 x += xspd * time;

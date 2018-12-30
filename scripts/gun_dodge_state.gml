@@ -18,16 +18,18 @@ xspd = facing * xdodgespd * sign(image_speed);
 
 if (image_speed > 0) {
 if (animation_end()) {
+    change_sprite(IDLE,0,1 * time);
     state_index = IDLE;
     if (time == TIME_STANDARD) {trail = false;}
 }
 } else {
     if (animation_end_reverse()) {
+        change_sprite(IDLE,0,1 * time);
         state_index = IDLE;
         if (time == TIME_STANDARD) {trail = false;}
     }
 }
 
 //If made it through, then we are just moving
-check_physics();
+check_player_physics();
 

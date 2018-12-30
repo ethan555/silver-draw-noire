@@ -6,7 +6,7 @@
   <depth>0</depth>
   <persistent>0</persistent>
   <parentName>player</parentName>
-  <maskName>&lt;undefined&gt;</maskName>
+  <maskName>gun_sp</maskName>
   <events>
     <event eventtype="0" enumb="0">
       <action>
