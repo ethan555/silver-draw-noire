@@ -107,6 +107,9 @@
     </scripts>
     <scripts name="Control Scripts">
       <script>scripts\take_input.gml</script>
+      <script>scripts\pathfinder_fill_grid.gml</script>
+      <script>scripts\pathfinder_build_path.gml</script>
+      <script>scripts\add_point.gml</script>
     </scripts>
     <scripts name="Player Scripts">
       <scripts name="Player State Scripts">
@@ -156,6 +159,7 @@
       <object>objects\view_parent</object>
       <object>objects\view_obj</object>
       <object>objects\logo_skippable</object>
+      <object>objects\pathfinder</object>
     </objects>
     <objects name="Characters">
       <object>objects\character_parent</object>

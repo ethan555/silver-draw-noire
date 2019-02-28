@@ -678,7 +678,7 @@
     <option_xbone_title_id></option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="37">
+    <constants number="39">
       <constant name="TIME_STANDARD">1</constant>
       <constant name="TIME_SHIFT">.25</constant>
       <constant name="FONT_CHARS">"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.,!?'-+/:"</constant>
@@ -716,6 +716,8 @@
       <constant name="SHOTGUN">2</constant>
       <constant name="BOUNCE">3</constant>
       <constant name="GRENADE">4</constant>
+      <constant name="STAIRS_UP">327699</constant>
+      <constant name="STAIRS_DOWN">327700</constant>
     </constants>
   </ConfigConstants>
 </Config>

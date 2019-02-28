@@ -138,4 +138,5 @@ if (space || interact) {
 
 //If made it through, then we are just moving
 check_player_physics();
+if (xspd == 0) {change_sprite(IDLE,0,1 * time);}
 
