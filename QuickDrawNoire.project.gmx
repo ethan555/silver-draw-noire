@@ -19,8 +19,10 @@
         <sprite>sprites\gun_walk_sp</sprite>
         <sprite>sprites\gun_run_sp</sprite>
         <sprite>sprites\gun_crouch_sp</sprite>
+        <sprite>sprites\gun_punch_sp</sprite>
         <sprite>sprites\gun_crouched_sp</sprite>
         <sprite>sprites\gun_kick_sp</sprite>
+        <sprite>sprites\gun_tornado_sp</sprite>
         <sprite>sprites\gun_dodge_sp</sprite>
         <sprite>sprites\gun_stairs_enter_sp</sprite>
         <sprite>sprites\gun_stairs_exit_sp</sprite>
@@ -122,6 +124,8 @@
         <script>scripts\gun_walk_state.gml</script>
         <script>scripts\gun_crouch_state.gml</script>
         <script>scripts\gun_jump_state.gml</script>
+        <script>scripts\gun_light_state.gml</script>
+        <script>scripts\gun_heavy_state.gml</script>
         <script>scripts\gun_range_state.gml</script>
         <script>scripts\gun_dodge_state.gml</script>
         <script>scripts\gun_stairs_enter_state.gml</script>

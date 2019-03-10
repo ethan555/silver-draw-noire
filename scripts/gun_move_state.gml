@@ -109,14 +109,14 @@ if (down) {
 if (light) {
     state_index = LIGHT;
     //sprite_state = LIGHT;
-    change_sprite(LIGHT,0,1 * time);
+    change_sprite(LIGHT,0,.25 * time);
     xspd = 0;
     return 0;
 }
 if (heavy) {
     state_index = HEAVY;
     //sprite_state = HEAVY;
-    change_sprite(HEAVY,0,1 * time);
+    change_sprite(HEAVY,0,.167 * time);
     xspd = 0;
     return 0;
 }
@@ -138,5 +138,5 @@ if (space || interact) {
 
 //If made it through, then we are just moving
 check_player_physics();
-if (xspd == 0) {change_sprite(IDLE,0,1 * time);}
+//if (xspd == 0) {change_sprite(IDLE,0,1 * time);}
 
