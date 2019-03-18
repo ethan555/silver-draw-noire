@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>event_inherited();
 grid_path = noone;
+path_building = noone;
 </string>
           </argument>
         </arguments>
@@ -77,19 +78,23 @@ grid_path = noone;
 
 draw_self();
 
-
+/**/
+draw_set_color(c_black);
+if path_exists(path_building) {
+    draw_path(path_building, x_to_grid(x), y_to_grid(y), true);
+    path_delete(path_building);
+}
 if (ds_exists(grid_path, ds_type_grid)) {
-    draw_set_color(c_black);
     for (var i=0; i &lt; ds_grid_width(grid_path); i++) {
         for (var j=0; j &lt; ds_grid_height(grid_path); j++) {
             var value = grid_path[# i, j];
             draw_text(i*pathfinder.gwidth+8,j*pathfinder.gheight+8,string(value));
         }
     }
-    draw_set_color(c_white);
+    ds_grid_destroy(grid_path);
 }
 
-ds_grid_destroy(grid_path);
+draw_set_color(c_white);
 
 </string>
           </argument>

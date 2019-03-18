@@ -46,14 +46,27 @@ for (var i = 1; i < 200; i ++) {
         fall_n = 1;
         
         var xp = xt+1;
-        if (xp < ds_grid_width(grid_path)) {
+        if (xp >= 0 && xp < ds_grid_width(grid_path)) {
         // Check if there is floor at 3
-        if (grid_path[# xp,yt] == -1 && grid_path[# xp,yt+1] == -2) {
+        if ((grid_path[# xp,yt] == -1 || grid_path[# xp,yt] == STAIRS_UP
+            || grid_path[# xp,yt] == STAIRS_DOWN)
+            && grid_path[# xp,yt+1] == -2) {
+            if (grid_path[# xt,yt-1] == STAIRS_UP || grid_path[# xt,yt-1] == STAIRS_DOWN) {
+                // Try going to partner
+                var inst = instance_place(grid_to_x(xt), grid_to_y(yt), stairs);
+                if (inst != noone) {
+                    inst = inst.partner;
+                    if (inst != noone) {
+                        grid_path[# x_to_grid(inst.x), y_to_grid(inst.y)] = i;
+                        add_point(point_list,x_to_grid(inst.x),y_to_grid(inst.y));
+                    }
+                }
+            }
             grid_path[# xp,yt] = i;
             add_point(point_list,xp,yt);
         } else { // Only happens if can't go 6
             // Check if we can jump one block up to 9
-            if (grid_path[# xp,yt] == -2 && grid_path[# xp,yt-1] == -1) {
+            /*if (grid_path[# xp,yt] == -2 && grid_path[# xp,yt-1] == -1) {
                 grid_path[# xp,yt-1] = i;
                 add_point(point_list, xp, yt-1);
             } else { // Only happens if can't jump up to 9
@@ -63,7 +76,7 @@ for (var i = 1; i < 200; i ++) {
                     
                     grid_path[# xt+2,yt] = i;
                     add_point(point_list, xt+2, yt);
-                }
+                }*/
                 // Check if we can fall to 3
                 if (grid_path[# xp,yt] == -1 && grid_path[# xp,yt+1] == -1) {
                     // Find where we will fall to
@@ -78,7 +91,7 @@ for (var i = 1; i < 200; i ++) {
                         add_point(point_list, xp,yt+fall_n-1);
                     }
                 }
-            }
+            //}
         }
         }
         
@@ -86,14 +99,26 @@ for (var i = 1; i < 200; i ++) {
         fall_a = 0;
         
         xp = xt-1;
-        if (xp >= 0) {
+        if (xp >= 0 && xp < ds_grid_width(grid_path)) {
         // Check if there is floor at 1
-        if (grid_path[# xp,yt] == -1 && grid_path[# xp,yt+1] == -2) {
+        if ((grid_path[# xp,yt] == -1 || grid_path[# xp,yt] == STAIRS_UP
+            || grid_path[# xp,yt] == STAIRS_DOWN) && grid_path[# xp,yt+1] == -2) {
+            if (grid_path[# xt,yt-1] == STAIRS_UP || grid_path[# xt,yt-1] == STAIRS_DOWN) {
+                // Try going to partner
+                var inst = instance_place(grid_to_x(xt), grid_to_y(yt), stairs);
+                if (inst != noone) {
+                    inst = inst.partner;
+                    if (inst != noone) {
+                        grid_path[# x_to_grid(inst.x), y_to_grid(inst.y)] = i;
+                        add_point(point_list,x_to_grid(inst.x),y_to_grid(inst.y));
+                    }
+                }
+            }
             grid_path[# xp,yt] = i;
             add_point(point_list,xp,yt);
         } else { // Only happens if can't go 4
             // Check if we can jump one block up to 7
-            if (grid_path[# xp,yt] == -2 && grid_path[# xp,yt-1] == -1) {
+            /*if (grid_path[# xp,yt] == -2 && grid_path[# xp,yt-1] == -1) {
                 grid_path[# xp,yt-1] = i;
                 add_point(point_list, xp, yt-1);
             } else { // Only happens if can't jump up to 7
@@ -103,7 +128,7 @@ for (var i = 1; i < 200; i ++) {
                     
                     grid_path[# xt-2,yt] = i;
                     add_point(point_list, xt-2, yt);
-                }
+                }*/
                 // Check if we can fall to 1
                 if (grid_path[# xp,yt] == -1 && grid_path[# xp,yt+1] == -1) {
                     // Find where we will fall to
@@ -118,7 +143,7 @@ for (var i = 1; i < 200; i ++) {
                         add_point(point_list, xp,yt+fall_n-1);
                     }
                 }
-            }
+            //}
         }
         }
     }

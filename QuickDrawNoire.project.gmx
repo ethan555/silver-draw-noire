@@ -112,6 +112,10 @@
       <script>scripts\pathfinder_fill_grid.gml</script>
       <script>scripts\pathfinder_build_path.gml</script>
       <script>scripts\add_point.gml</script>
+      <script>scripts\grid_to_x.gml</script>
+      <script>scripts\grid_to_y.gml</script>
+      <script>scripts\x_to_grid.gml</script>
+      <script>scripts\y_to_grid.gml</script>
     </scripts>
     <scripts name="Player Scripts">
       <scripts name="Player State Scripts">
