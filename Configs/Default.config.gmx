@@ -678,9 +678,10 @@
     <option_xbone_title_id></option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="39">
+    <constants number="42">
       <constant name="TIME_STANDARD">1</constant>
       <constant name="TIME_SHIFT">.25</constant>
+      <constant name="TIME_RELOAD">.125</constant>
       <constant name="FONT_CHARS">"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.,!?'-+/:"</constant>
       <constant name="GRAVITY">.5</constant>
       <constant name="YSPDMAX">16</constant>
@@ -701,6 +702,8 @@
       <constant name="RANGE_F1">16</constant>
       <constant name="SPECIAL">9</constant>
       <constant name="INTERACT">10</constant>
+      <constant name="RELOAD">17</constant>
+      <constant name="RELOAD_SPEED">.125</constant>
       <constant name="STAIRS_ENTER">20</constant>
       <constant name="STAIRS_EXIT">21</constant>
       <constant name="WALL_DEPTH">900</constant>

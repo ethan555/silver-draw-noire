@@ -5,11 +5,13 @@ if (sprite_index != sprite[HEAVY]) {
     change_sprite(HEAVY, 0, .25 * time);
 }
 
-if (image_index < 2) {
+if (image_index < 1) {
     xspd = 0;//xwalkspdmax * facing;
-} else if (image_index < 5) {
+} else if (image_index < 4) {
     xspd = xspdmax * facing;
-} 
+} else {
+    xspd = xwalkspdmax * facing;
+}
 
 if (animation_end()) {
     xspd = xwalkspdmax * facing;

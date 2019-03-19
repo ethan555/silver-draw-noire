@@ -34,6 +34,7 @@ energy = player_stats.gun_energy;
 ammo_cylinder = player_stats.gun_ammo;
 ammo[ammo_cylinder - 1] = STANDARD;
 ammo_index = 0; //from 0 to ammo - 1
+ammo_dir = 0;
 
 xspd = 0;
 yspd = 0;
@@ -58,6 +59,7 @@ states[DODGE] = gun_dodge_state;
 states[CROUCH] = gun_crouch_state;
 states[STAIRS_ENTER] = gun_stairs_enter_state;
 states[STAIRS_EXIT] = gun_stairs_exit_state;
+states[RELOAD] = gun_reload_state;
 
 image_xscale = 4;
 image_yscale = 4;
@@ -95,6 +97,7 @@ sprite[RANGE] = gun_range_sp;
 sprite[SPECIAL] = gun_special_sp;
 sprite[STAIRS_ENTER] = gun_stairs_enter_sp;
 sprite[STAIRS_EXIT] = gun_stairs_exit_sp;
+sprite[RELOAD] = gun_drawn_sp;
 </string>
           </argument>
         </arguments>
@@ -151,7 +154,7 @@ draw_set_alpha(1);
 image_xscale = facing*abs(image_xscale);
 //draw_self();
 draw_sprite_ext(sprite_index,image_index,x,y,image_xscale,image_yscale,image_angle,image_blend,1);
-
+/*
 var i, xold, yold, xnew, ynew, ip;
 var px, py, nx, ny, vx, vy, d;
 
@@ -245,7 +248,7 @@ for (i = 1; i &lt; cloth_length; i ++) {
     draw_vertex(nx+vx, ny+vy);
     draw_vertex(nx-vx, ny-vy);
 }
-draw_primitive_end();
+draw_primitive_end();/**/
 surface_reset_target();
 draw_set_alpha(image_alpha);
 draw_surface(gun_surface,0,0);//view_xview[0],view_yview[0]);

@@ -21,7 +21,6 @@ var heavy = input.heavy;
 var range = input.range;
 var special = input.special;
 var interact = input.interact;
-var reload = input.reload;
 //Lateral facing direction and movement
 var hdir = (right - left);
 var hspd = hdir;//xspdmax * hdir;
@@ -32,11 +31,6 @@ var hspd = hdir;//xspdmax * hdir;
  * light > range > range > special - attack order
  * interact - interaction takes lowest priority
  */
-
-if (frac(ammo_index) != 0) {
-    ammo_index = modulo(ammo_index + ammo_dir, 6);
-    if (frac(ammo_index) == 0) {ammo_dir = 0;}
-}
 
 //Lateral Movement
 if (hdir != 0) {
@@ -70,8 +64,7 @@ if (shift) {
     //Make things shifty
     if (application_shader == invert_sh) {application_shader = noone;}
     else {application_shader = invert_sh;}
-    if (time == TIME_SHIFT) {time = TIME_STANDARD; trail = false; trailtimer = 0;
-        x = round(x); y = round(y);}
+    if (time == TIME_SHIFT) {time = TIME_STANDARD; trail = false; trailtimer = 0;}
     else {time = TIME_SHIFT; trail = true;}
     return 0;
 }
@@ -127,7 +120,7 @@ if (heavy) {
     xspd = 0;
     return 0;
 }
-if (range && frac(ammo_index) == 0) {
+if (range) {
     state_index = RANGE;
     //sprite_state = RANGE;
     var ind = 0;
@@ -140,15 +133,6 @@ if (range && frac(ammo_index) == 0) {
 if (space || interact) {
     //Interact with nearby interactables
     player_interact();
-    return 0;
-}
-
-if (reload) {
-    //change to reload state
-    xspd = 0;
-    time = TIME_SHIFT;
-    state_index = RELOAD;
-    change_sprite(RELOAD,0,0 * time);
     return 0;
 }
 

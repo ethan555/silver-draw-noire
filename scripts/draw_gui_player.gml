@@ -38,6 +38,7 @@ for (i = 0; i < 6; i ++) {
         case GRENADE:
             sprite = ammo_grenade_sp; break;
         default:
+            sprite = -1;
     }
     angle = 90 + ammo_index*60 - i*60;
     if (i == ammo_index) {

@@ -23,6 +23,7 @@
         <sprite>sprites\gun_crouched_sp</sprite>
         <sprite>sprites\gun_kick_sp</sprite>
         <sprite>sprites\gun_tornado_sp</sprite>
+        <sprite>sprites\gun_heavy_sp</sprite>
         <sprite>sprites\gun_dodge_sp</sprite>
         <sprite>sprites\gun_stairs_enter_sp</sprite>
         <sprite>sprites\gun_stairs_exit_sp</sprite>
@@ -35,7 +36,6 @@
         <sprite>sprites\gun_dash_old_sp</sprite>
         <sprite>sprites\gun_jump_sp</sprite>
         <sprite>sprites\gun_light_sp</sprite>
-        <sprite>sprites\gun_heavy_sp</sprite>
         <sprite>sprites\gun_range_sp</sprite>
         <sprite>sprites\gun_special_sp</sprite>
       </sprites>
@@ -132,6 +132,7 @@
         <script>scripts\gun_heavy_state.gml</script>
         <script>scripts\gun_range_state.gml</script>
         <script>scripts\gun_dodge_state.gml</script>
+        <script>scripts\gun_reload_state.gml</script>
         <script>scripts\gun_stairs_enter_state.gml</script>
       </scripts>
       <script>scripts\change_sprite.gml</script>

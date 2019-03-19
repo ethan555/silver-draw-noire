@@ -16,7 +16,7 @@ if (!place_free(x+xspd * time,y)) {
         }
     }
 }
-x += xspd * time;
+x = x + xspd * time;
 }
 
 //Check our diagonals
@@ -38,7 +38,7 @@ if (!place_free(x,y+yspd * time)) {
         landed = 2;
     }
 }
-y += yspd * time;
+y = y + yspd * time;
 }
 
 /*if (!place_free(x,y)) {
@@ -51,6 +51,8 @@ y += yspd * time;
 }*/
 
 if (landed == 1) {
+    if (!place_free(x,y)) {y = floor(y);}
+    //x = round(x);
     state_index = IDLE;
     change_sprite(IDLE,0,1);
 } else if (landed == 2) {
